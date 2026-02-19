@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tracciamento_fruiziones",
+  "info": {
+    "singularName": "tracciamento-fruizione",
+    "pluralName": "tracciamento-fruiziones",
+    "displayName": "TracciamentoFruizione",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataInizio": {
+      "type": "datetime"
+    },
+    "dataFine": {
+      "type": "datetime"
+    },
+    "stato": {
+      "type": "enumeration",
+      "enum": [
+        "IN SOSPESO",
+        "COMPLETATO",
+        "DA INIZIARE"
+      ]
+    },
+    "progresso": {
+      "type": "decimal"
+    },
+    "tempoSpeso": {
+      "type": "time"
+    },
+    "ultimoAccesso": {
+      "type": "datetime"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "tracciamento_fruiziones"
+    },
+    "materiale_on_boardings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::materiale-on-boarding.materiale-on-boarding",
+      "mappedBy": "tracciamento_fruizione"
+    }
+  }
+}

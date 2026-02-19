@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aziendas",
+  "info": {
+    "singularName": "azienda",
+    "pluralName": "aziendas",
+    "displayName": "Azienda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "profilo_azienda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-azienda.profilo-azienda",
+      "mappedBy": "azienda"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "azienda"
+    },
+    "offerta_lavoros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offerta-lavoro.offerta-lavoro",
+      "mappedBy": "azienda"
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback",
+      "mappedBy": "azienda"
+    },
+    "tests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::test.test",
+      "mappedBy": "azienda"
+    },
+    "risultato_test": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risultato-test.risultato-test",
+      "mappedBy": "azienda"
+    },
+    "messaggios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::messaggio.messaggio",
+      "mappedBy": "aziendas"
+    },
+    "colloquios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::colloquio.colloquio",
+      "mappedBy": "aziendas"
+    }
+  }
+}

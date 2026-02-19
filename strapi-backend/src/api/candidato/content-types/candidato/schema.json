@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidatoes",
+  "info": {
+    "singularName": "candidato",
+    "pluralName": "candidatoes",
+    "displayName": "Candidato",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-candidato.profilo-candidato",
+      "mappedBy": "candidato"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "candidato"
+    },
+    "offerta_lavoros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offerta-lavoro.offerta-lavoro",
+      "mappedBy": "candidato"
+    },
+    "offerte_salvates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offerte-salvate.offerte-salvate",
+      "mappedBy": "candidato"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "candidato"
+    },
+    "tracciamento_fruiziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tracciamento-fruizione.tracciamento-fruizione",
+      "mappedBy": "candidato"
+    },
+    "messaggios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::messaggio.messaggio",
+      "mappedBy": "candidatoes"
+    },
+    "colloquios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::colloquio.colloquio",
+      "mappedBy": "candidatoes"
+    }
+  }
+}

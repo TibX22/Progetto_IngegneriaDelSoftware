@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "motore_compatibilitas",
+  "info": {
+    "singularName": "motore-compatibilita",
+    "pluralName": "motore-compatibilitas",
+    "displayName": "MotoreCompatibilità",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "percentualeCompatibilita": {
+      "type": "decimal"
+    },
+    "dataCalcolo": {
+      "type": "datetime"
+    },
+    "offerta_lavoro": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::offerta-lavoro.offerta-lavoro"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-candidato.profilo-candidato"
+    },
+    "requisito_posizione": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::requisito-posizione.requisito-posizione"
+    },
+    "profilo_azienda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-azienda.profilo-azienda"
+    }
+  }
+}

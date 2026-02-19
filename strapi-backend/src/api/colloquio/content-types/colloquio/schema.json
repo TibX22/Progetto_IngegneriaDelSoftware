@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colloquios",
+  "info": {
+    "singularName": "colloquio",
+    "pluralName": "colloquios",
+    "displayName": "Colloquio",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataOra": {
+      "type": "datetime"
+    },
+    "luogo": {
+      "type": "string"
+    },
+    "modalita": {
+      "type": "enumeration",
+      "enum": [
+        "videochiamata",
+        "telefonata",
+        "presenza"
+      ]
+    },
+    "statoColloquio": {
+      "type": "enumeration",
+      "enum": [
+        "in corso",
+        "programmato",
+        "reinviato"
+      ]
+    },
+    "aziendas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::azienda.azienda",
+      "inversedBy": "colloquios"
+    },
+    "candidatoes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidato.candidato",
+      "inversedBy": "colloquios"
+    },
+    "messaggios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::messaggio.messaggio",
+      "mappedBy": "colloquio"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidatura.candidatura",
+      "inversedBy": "colloquios"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "singularName": "test",
+    "pluralName": "tests",
+    "displayName": "Test",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "punteggioMinimo": {
+      "type": "integer"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "durataMassimaMinuti": {
+      "type": "integer"
+    },
+    "attivo": {
+      "type": "boolean"
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "tests"
+    },
+    "domandas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::domanda.domanda",
+      "mappedBy": "test"
+    },
+    "risultato_test": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risultato-test.risultato-test",
+      "mappedBy": "test"
+    }
+  }
+}

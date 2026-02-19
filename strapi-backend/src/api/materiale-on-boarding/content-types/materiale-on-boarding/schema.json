@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materiale_on_boardings",
+  "info": {
+    "singularName": "materiale-on-boarding",
+    "pluralName": "materiale-on-boardings",
+    "displayName": "MaterialeOnBoarding",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titolo": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "tipoMateriale": {
+      "type": "enumeration",
+      "enum": [
+        "Preparazione al colloquio",
+        "Test recenti",
+        "Esercizi codice"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "dataCaricamento": {
+      "type": "datetime"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "durataStimata": {
+      "type": "decimal"
+    },
+    "dimensioneFile": {
+      "type": "decimal"
+    },
+    "archivio_materiali": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::archivio-materiali.archivio-materiali",
+      "inversedBy": "materiale_on_boardings"
+    },
+    "tracciamento_fruizione": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tracciamento-fruizione.tracciamento-fruizione",
+      "inversedBy": "materiale_on_boardings"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "domandas",
+  "info": {
+    "singularName": "domanda",
+    "pluralName": "domandas",
+    "displayName": "Domanda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "testo": {
+      "type": "text"
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "RISPOSTA MULTIPLA",
+        "RISPOSTA APERTA"
+      ]
+    },
+    "punteggioMax": {
+      "type": "integer"
+    },
+    "test": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::test.test",
+      "inversedBy": "domandas"
+    },
+    "opzioniRisposta": {
+      "type": "string"
+    }
+  }
+}

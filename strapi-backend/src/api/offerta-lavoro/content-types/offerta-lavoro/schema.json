@@ -1,0 +1,108 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offerta_lavoros",
+  "info": {
+    "singularName": "offerta-lavoro",
+    "pluralName": "offerta-lavoros",
+    "displayName": "OffertaLavoro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titolo": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "localita": {
+      "type": "string"
+    },
+    "tipo_contratto": {
+      "type": "enumeration",
+      "enum": [
+        "determinato",
+        "indeterminato"
+      ]
+    },
+    "data_pubblicazione": {
+      "type": "datetime"
+    },
+    "retribuzione_minima": {
+      "type": "biginteger"
+    },
+    "retribuzione_massima": {
+      "type": "biginteger"
+    },
+    "settore": {
+      "type": "enumeration",
+      "enum": [
+        "Sviluppo Software",
+        "Sviluppo Mobile",
+        "DevOps & Cloud Computing",
+        "Cybersecurity",
+        "Data Science & Big Data",
+        "Machine Learning & AI",
+        "Blockchain & Cryptocurrency",
+        "IT Support & System Administration",
+        "QA & Testing",
+        "UI/UX Design"
+      ]
+    },
+    "modalita_lavoro": {
+      "type": "enumeration",
+      "enum": [
+        "ibrido",
+        "da remoto",
+        "in sede"
+      ]
+    },
+    "esperienza_richiesta": {
+      "type": "enumeration",
+      "enum": [
+        "anni 1-2",
+        "anni 3-5 ",
+        "anni 5-9 ",
+        "anni 10+ "
+      ]
+    },
+    "scadenza": {
+      "type": "date"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "offerta_lavoros"
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "offerta_lavoros"
+    },
+    "offerte_salvates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offerte-salvate.offerte-salvate",
+      "mappedBy": "offerta_lavoro"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "offerta_lavoros"
+    },
+    "requisito_posiziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::requisito-posizione.requisito-posizione",
+      "mappedBy": "offerta_lavoro"
+    },
+    "benefict": {
+      "type": "text"
+    }
+  }
+}

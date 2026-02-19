@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certificaziones",
+  "info": {
+    "singularName": "certificazione",
+    "pluralName": "certificaziones",
+    "displayName": "Certificazione",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "enteRilascio": {
+      "type": "string"
+    },
+    "dataRilascio": {
+      "type": "date"
+    },
+    "dataScadenza": {
+      "type": "date"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profilo-candidato.profilo-candidato",
+      "inversedBy": "certificaziones"
+    },
+    "requisito_posizione": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::requisito-posizione.requisito-posizione",
+      "inversedBy": "certificaziones"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "obiettivo_carrieras",
+  "info": {
+    "singularName": "obiettivo-carriera",
+    "pluralName": "obiettivo-carrieras",
+    "displayName": "ObiettivoCarriera",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ruoloDesiderato": {
+      "type": "string"
+    },
+    "sedeDesiderata": {
+      "type": "string"
+    },
+    "salarioDesiderato": {
+      "type": "string"
+    },
+    "settoreDesiderato": {
+      "type": "string"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-candidato.profilo-candidato",
+      "inversedBy": "obiettivo_carriera"
+    }
+  }
+}

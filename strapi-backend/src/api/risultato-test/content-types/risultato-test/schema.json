@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risultato_tests",
+  "info": {
+    "singularName": "risultato-test",
+    "pluralName": "risultato-tests",
+    "displayName": "RisultatoTest",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataSostenimento": {
+      "type": "datetime"
+    },
+    "punteggioOttenuto": {
+      "type": "integer"
+    },
+    "superato": {
+      "type": "boolean"
+    },
+    "risposteDate": {
+      "type": "text"
+    },
+    "test": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::test.test",
+      "inversedBy": "risultato_test"
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "risultato_test"
+    }
+  }
+}

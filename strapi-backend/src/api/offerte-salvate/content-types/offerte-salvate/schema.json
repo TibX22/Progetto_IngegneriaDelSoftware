@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offerte_salvates",
+  "info": {
+    "singularName": "offerte-salvate",
+    "pluralName": "offerte-salvates",
+    "displayName": "OfferteSalvate"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataSalvataggio": {
+      "type": "datetime"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "offerte_salvates"
+    },
+    "offerta_lavoro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::offerta-lavoro.offerta-lavoro",
+      "inversedBy": "offerte_salvates"
+    }
+  }
+}

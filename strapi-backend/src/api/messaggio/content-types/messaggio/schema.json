@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messaggios",
+  "info": {
+    "singularName": "messaggio",
+    "pluralName": "messaggios",
+    "displayName": "Messaggio",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "oggetto": {
+      "type": "text"
+    },
+    "contenuto": {
+      "type": "text"
+    },
+    "dataOraInvio": {
+      "type": "datetime"
+    },
+    "statoMessaggio": {
+      "type": "enumeration",
+      "enum": [
+        "inviato",
+        "letto",
+        "in invio"
+      ]
+    },
+    "tipoMessaggio": {
+      "type": "string"
+    },
+    "candidatoes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidato.candidato",
+      "inversedBy": "messaggios"
+    },
+    "aziendas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::azienda.azienda",
+      "inversedBy": "messaggios"
+    },
+    "colloquio": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::colloquio.colloquio",
+      "inversedBy": "messaggios"
+    }
+  }
+}

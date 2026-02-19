@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidaturas",
+  "info": {
+    "singularName": "candidatura",
+    "pluralName": "candidaturas",
+    "displayName": "Candidatura",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataInvio": {
+      "type": "datetime"
+    },
+    "stato": {
+      "type": "enumeration",
+      "enum": [
+        "Inviata",
+        "In revisione",
+        "Accettata",
+        "Rifiutata",
+        "Archiviata"
+      ]
+    },
+    "messaggioMotivazionale": {
+      "type": "text"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "candidaturas"
+    },
+    "offerta_lavoros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::offerta-lavoro.offerta-lavoro",
+      "inversedBy": "candidaturas"
+    },
+    "colloquios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::colloquio.colloquio",
+      "mappedBy": "candidaturas"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profilo_candidatoes",
+  "info": {
+    "singularName": "profilo-candidato",
+    "pluralName": "profilo-candidatoes",
+    "displayName": "ProfiloCandidato",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "cognome": {
+      "type": "string"
+    },
+    "indirizzo": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "CV": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "profilo_candidato"
+    },
+    "certificaziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificazione.certificazione",
+      "mappedBy": "profilo_candidato"
+    },
+    "badges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::badge.badge",
+      "mappedBy": "profilo_candidato"
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback",
+      "mappedBy": "profilo_candidato"
+    },
+    "obiettivo_carriera": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::obiettivo-carriera.obiettivo-carriera",
+      "mappedBy": "profilo_candidato"
+    },
+    "requisito_posiziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::requisito-posizione.requisito-posizione",
+      "mappedBy": "profilo_candidato"
+    },
+    "preferenzaValoriCulturali": {
+      "type": "enumeration",
+      "enum": [
+        "collaborazione",
+        "innovazione",
+        "meritocrazia"
+      ]
+    },
+    "preferenzaStileLeadeship": {
+      "type": "enumeration",
+      "enum": [
+        "partecipativo",
+        "gerarchico",
+        "autonomo"
+      ]
+    },
+    "importanzaSostenibilita": {
+      "type": "boolean"
+    },
+    "importanzaCrescitaPersonale": {
+      "type": "boolean"
+    }
+  }
+}

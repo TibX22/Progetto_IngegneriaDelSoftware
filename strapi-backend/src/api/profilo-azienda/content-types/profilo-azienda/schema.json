@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profilo_aziendas",
+  "info": {
+    "singularName": "profilo-azienda",
+    "pluralName": "profilo-aziendas",
+    "displayName": "ProfiloAzienda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nomeAzienda": {
+      "type": "string"
+    },
+    "partitaIva": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "sede": {
+      "type": "string"
+    },
+    "emailContatto": {
+      "type": "email"
+    },
+    "settore": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "sitoweb": {
+      "type": "string"
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "profilo_azienda"
+    },
+    "valoriCulturali": {
+      "type": "enumeration",
+      "enum": [
+        "innovazione",
+        "flessibilità",
+        "collaborazione",
+        "meritocrazia"
+      ]
+    },
+    "stileLeadership": {
+      "type": "enumeration",
+      "enum": [
+        "partecipativo",
+        "gerarchico",
+        "autonomo"
+      ]
+    },
+    "ambienteLavoro": {
+      "type": "string"
+    },
+    "focusSostenibilita": {
+      "type": "boolean"
+    },
+    "focusCrescitaDipendenti": {
+      "type": "boolean"
+    },
+    "archivio_materiali": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::archivio-materiali.archivio-materiali",
+      "mappedBy": "profilo_azienda"
+    }
+  }
+}

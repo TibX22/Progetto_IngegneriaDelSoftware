@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requisito_posiziones",
+  "info": {
+    "singularName": "requisito-posizione",
+    "pluralName": "requisito-posiziones",
+    "displayName": "RequisitoPosizione",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "descrizione": {
+      "type": "text"
+    },
+    "tipoRequisito": {
+      "type": "enumeration",
+      "enum": [
+        "COMPETENZA TECNICA",
+        "SOFT SKILL",
+        "LINGUA",
+        "CERTIFICAZIONE",
+        "BADGE",
+        "ESPERIENZA",
+        "TITOLO_STUDIO",
+        "DISPONIBILITA"
+      ]
+    },
+    "nomeRequisito": {
+      "type": "string"
+    },
+    "valoreRequisito": {
+      "type": "integer"
+    },
+    "obbligatorio": {
+      "type": "boolean"
+    },
+    "pesoCalcolo": {
+      "type": "integer"
+    },
+    "badges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::badge.badge",
+      "mappedBy": "requisito_posizione"
+    },
+    "certificaziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificazione.certificazione",
+      "mappedBy": "requisito_posizione"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profilo-candidato.profilo-candidato",
+      "inversedBy": "requisito_posiziones"
+    },
+    "offerta_lavoro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::offerta-lavoro.offerta-lavoro",
+      "inversedBy": "requisito_posiziones"
+    }
+  }
+}

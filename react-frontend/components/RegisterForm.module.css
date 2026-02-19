@@ -1,0 +1,181 @@
+/* RegisterForm.module.css */
+
+/* Contenitore principale del form */
+.register-container {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 0.75rem; /* 12px */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Ombra più pronunciata */
+  width: 100%;
+  max-width: 450px; /* Larghezza massima per il form */
+  text-align: center;
+  border: 1px solid #e2e8f0; /* Bordo leggero */
+}
+
+/* Stile per il logo */
+.logo {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  border-radius: 0.5rem; /* 8px - Coerente con il tuo componente */
+  object-fit: cover;
+}
+
+/* Titolo del form */
+.register-container h1 {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700; /* Bold */
+  color: #2b2d42;
+  margin-bottom: 2rem;
+}
+
+/* Gruppi di input */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left; /* Allinea etichette e input a sinistra */
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem; /* 16px */
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e0; /* light gray */
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1rem;
+  color: #2d3748; /* dark gray text */
+  background-color: #f8faff; /* light background for inputs */
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a56e2; /* Blue focus ring */
+  box-shadow: 0 0 0 3px rgba(74, 86, 226, 0.2); /* Soft blue glow */
+}
+
+/* Stile per i messaggi di errore sotto i campi */
+.error-message {
+  color: #e53e3e; /* Red for errors */
+  font-size: 0.875rem; /* 14px */
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* Nuova classe per il bottone di submit */
+.submitButton {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background-color: #4a56e2; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  margin-top: 1rem;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #3742c0; /* Darker blue on hover */
+  transform: translateY(-1px); /* Slight lift effect */
+}
+
+.submitButton:disabled {
+  background-color: #a0aec0; /* Gray when disabled */
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Link per chi ha già un account */
+.login-link {
+  margin-top: 1.75rem;
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.login-link a {
+  color: #4a56e2; /* Blue */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
+}
+
+.login-link a:hover {
+  color: #3742c0; /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* Messaggi di risultato (successo, errore, caricamento) */
+.success-message {
+  background-color: #e6fffa; /* Light green background */
+  color: #38a169; /* Dark green text */
+  border: 1px solid #9ae6b4; /* Green border */
+}
+
+.error-global-message {
+  background-color: #fff5f5; /* Light red background */
+  color: #e53e3e; /* Red text */
+  border: 1px solid #feb2b2; /* Red border */
+}
+
+.loading-message {
+  background-color: #ebf8ff; /* Light blue background */
+  color: #3182ce; /* Blue text */
+  border: 1px solid #90cdf4; /* Blue border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Stile per lo spinner di caricamento */
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #4a56e2; /* Colore spinner */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  display: inline-block; /* Assicura che lo spinner sia visibile */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Media Queries per la responsività (opzionale, ma consigliato) */
+@media (max-width: 600px) {
+  .register-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .register-container h1 {
+    font-size: 1.75rem; /* Riduce la dimensione del titolo su schermi piccoli */
+    margin-bottom: 1.5rem;
+  }
+
+  /* Applica la classe .submitButton anche nella media query */
+  .submitButton {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+}

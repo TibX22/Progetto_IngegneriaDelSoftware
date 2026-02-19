@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "archivio_materialis",
+  "info": {
+    "singularName": "archivio-materiali",
+    "pluralName": "archivio-materialis",
+    "displayName": "ArchivioMateriali",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "dataCreazione": {
+      "type": "datetime"
+    },
+    "materiale_on_boardings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::materiale-on-boarding.materiale-on-boarding",
+      "mappedBy": "archivio_materiali"
+    },
+    "profilo_azienda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-azienda.profilo-azienda",
+      "inversedBy": "archivio_materiali"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profilo-candidato.profilo-candidato"
+    }
+  }
+}

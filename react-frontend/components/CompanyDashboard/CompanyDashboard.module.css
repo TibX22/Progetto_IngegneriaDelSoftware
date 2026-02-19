@@ -1,0 +1,1107 @@
+/* components/CompanyDashboard/CompanyDashboard.module.css */
+
+/* --- Variabili CSS Globali (Palette Colori e Spacing) --- */
+:root {
+    /* Nuova Palette Colori - Professionale e Moderna per l'Azienda (ancora più raffinata) */
+    --primary-company-blue: #004080; /* Blu scuro profondo per elementi chiave */
+    --secondary-company-accent: #0056b3; /* Blu leggermente più chiaro per accenti forti */
+    --tertiary-company-green: #218838; /* Verde per successi, conferme (leggermente più scuro) */
+    --danger-company-red: #c82333; /* Rosso per errori, avvisi (leggermente più scuro) */
+    --warning-company-orange: #e0a800; /* Arancione per warning (leggermente più scuro) */
+    --info-company-teal: #138496; /* Teal per info, notifiche (leggermente più scuro) */
+
+    --text-company-dark: #212529; /* Testo scurissimo per leggibilità massima */
+    --text-company-medium: #495057; /* Testo secondario, descrizioni */
+    --text-company-light: #f8f9fa; /* Testo su sfondi scuri */
+
+    --background-company-light: #f8f9fa; /* Sfondo generale molto chiaro e pulito */
+    --background-company-card: #ffffff; /* Sfondo delle card, bianco puro */
+    --border-company-light: #e9ecef; /* Bordi sottili, appena visibili */
+    --shadow-company-extra-light: rgba(0, 0, 0, 0.04); /* Ombra quasi impercettibile */
+    --shadow-company-light: rgba(0, 0, 0, 0.08); /* Ombra leggera per profondità */
+    --shadow-company-medium: rgba(0, 0, 0, 0.12); /* Ombra media per evidenza */
+    --shadow-company-strong: rgba(0, 0, 0, 0.18); /* Ombra più definita all'hover/focus */
+
+    /* Spacing System - Consistente con Candidate Dashboard */
+    --spacing-xxs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+
+    /* Font Sizes - Consistente con Candidate Dashboard */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-lg: 1.125rem;  /* 18px */
+    --font-size-xl: 1.25rem;   /* 20px */
+    --font-size-2xl: 1.5rem;   /* 24px */
+    --font-size-3xl: 1.875rem; /* 30px */
+}
+
+/* ------------------------------------------- */
+/* LAYOUT GENERALE DASHBOARD AZIENDALE         */
+/* ------------------------------------------- */
+
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-company-light);
+    color: var(--text-company-dark);
+    /* overflow-x: hidden; */ /* Evita scroll orizzontale */
+}
+
+.mainContent {
+    flex-grow: 1;
+    margin-left: 250px; /* Larghezza predefinita della sidebar su desktop */
+    padding: var(--spacing-xl); /* Aumentato il padding generale */
+    background-color: var(--background-company-light);
+    transition: margin-left 0.3s ease-in-out;
+    display: flex; /* Flexbox per il contenuto principale */
+    flex-direction: column; /* Organizza gli elementi in colonna */
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+        padding: var(--spacing-md);
+    }
+}
+
+.dashboardContent {
+    display: grid;
+    gap: var(--spacing-lg); /* Spazio tra le card principali */
+    grid-template-columns: 1fr; /* Una colonna di default su mobile */
+    align-items: start;
+    max-width: 1400px; /* Limite larghezza per il contenuto */
+    margin: var(--spacing-md) auto; /* Centra il contenuto e aggiunge margine */
+    padding: 0 var(--spacing-md);
+    flex-grow: 1; /* Permette alla griglia di espandersi */
+}
+
+@media (min-width: 768px) {
+    .dashboardContent {
+        grid-template-columns: 2.5fr 1.5fr; /* Layout a due colonne per desktop */
+        grid-template-areas:
+            "welcome stats"
+            "posted-jobs posted-jobs"
+            "profile-page profile-page";
+    }
+    .welcomeCard { grid-area: welcome; }
+    .statsContainer { grid-area: stats; }
+    .postedJobs { grid-area: posted-jobs; }
+    .profilePage { grid-area: profile-page; }
+}
+
+/* Stili comuni per tutte le "card" della dashboard */
+.welcomeCard,
+.statsContainer,
+.statCard,
+.postedJobs,
+.profileCard {
+    background-color: var(--background-company-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-company-light); /* Ombra più leggera di default */
+    padding: var(--spacing-xl);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transizioni più fluide */
+    overflow: hidden;
+    border: 1px solid var(--border-company-light); /* Bordo sottile di base */
+}
+
+.welcomeCard:hover,
+.statsContainer:hover,
+.statCard:hover,
+.postedJobs:hover,
+.profileCard:hover {
+    transform: translateY(-5px); /* Sollevamento più marcato all'hover */
+    box-shadow: 0 8px 25px var(--shadow-company-medium); /* Ombra più intensa all'hover */
+    border-color: var(--secondary-company-accent); /* Bordo colorato all'hover */
+}
+
+
+/* ------------------------------------------- */
+/* HEADER AZIENDALE                            */
+/* ------------------------------------------- */
+.header {
+    background-color: var(--background-company-card);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px var(--shadow-company-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid var(--border-company-light);
+}
+
+.menuToggle {
+    background: none;
+    border: none;
+    color: var(--primary-company-blue);
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    display: none; /* Nascosto su desktop */
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+}
+
+.menuToggle:hover {
+    color: var(--secondary-company-accent);
+    transform: scale(1.1);
+    background-color: rgba(0, 123, 255, 0.08);
+}
+
+@media (max-width: 767px) {
+    .menuToggle {
+        display: block; /* Mostrato su mobile */
+    }
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+    color: var(--text-company-medium);
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+}
+
+.notifications:hover {
+    color: var(--text-company-dark);
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.notificationBadge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--danger-company-red);
+    color: var(--text-company-light);
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 0.75rem;
+    line-height: 1;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.profileInfo .userName {
+    font-size: var(--font-size-lg);
+    color: var(--text-company-dark);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.profilePic {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-company-blue);
+    box-shadow: 0 0 0 2px var(--secondary-company-accent), 0 2px 5px rgba(0,0,0,0.1);
+    width: 48px;
+    height: 48px;
+}
+
+
+/* ------------------------------------------- */
+/* WELCOME CARD AZIENDALE                      */
+/* ------------------------------------------- */
+.welcomeCard h2 {
+    color: var(--primary-company-blue);
+    font-size: var(--font-size-3xl); /* Aumentato per enfasi */
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+}
+
+.welcomeCard p {
+    color: var(--text-company-medium);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-base);
+}
+
+.quickActions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Stili generali per i pulsanti di azione */
+.actionBtn {
+    background-color: var(--primary-company-blue);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    outline: none; /* Rimuovi l'outline di default */
+}
+
+.actionBtn:hover {
+    background: linear-gradient(45deg, var(--secondary-company-accent), var(--primary-company-blue));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.actionBtn:focus {
+    box-shadow: 0 0 0 3px rgba(0, 76, 153, 0.4); /* Focus ring leggero */
+}
+
+.actionBtn.secondary {
+    background-color: var(--info-company-teal);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.15);
+}
+
+.actionBtn.secondary:hover {
+    background: linear-gradient(45deg, #138496, var(--info-company-teal));
+    box-shadow: 0 6px 18px rgba(23, 162, 184, 0.25);
+}
+
+.actionBtn.cancel {
+    background-color: var(--text-company-medium);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.15);
+}
+
+.actionBtn.cancel:hover {
+    background-color: #5a6268;
+    box-shadow: 0 6px 18px rgba(108, 117, 125, 0.25);
+}
+
+.actionBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6; /* Leggermente meno opaco */
+}
+
+
+/* ------------------------------------------- */
+/* STATS CONTAINER AZIENDALE                   */
+/* ------------------------------------------- */
+.statsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Ridotto min-width per più flessibilità */
+    gap: var(--spacing-md);
+}
+
+.statCard {
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px var(--shadow-company-light);
+    text-align: center;
+    border: 1px solid var(--border-company-light);
+}
+
+.statCard h3 {
+    color: var(--text-company-dark);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.statCard h3 i {
+    color: var(--primary-company-blue);
+    font-size: var(--font-size-xl);
+}
+
+.statCard p {
+    font-size: var(--font-size-3xl);
+    font-weight: bold;
+    color: var(--primary-company-blue);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* ------------------------------------------- */
+/* POSTED JOBS (OFFERTE PUBBLICATE)            */
+/* ------------------------------------------- */
+.postedJobs {
+    /* common card styles apply */
+}
+
+.jobList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jobItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--border-company-light);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.jobItem:last-child {
+    border-bottom: none;
+}
+
+.jobItem:hover {
+    background-color: #f0f4f7; /* Sfondo leggero all'hover */
+    transform: translateX(5px); /* Spostamento leggero a destra */
+}
+
+.jobIcon {
+    background-color: var(--primary-company-blue);
+    color: white;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.jobContent { /* Aggiunto un contenitore per titolo e descrizione */
+    flex-grow: 1;
+}
+
+.jobTitle {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    color: var(--text-company-dark);
+    font-weight: 600;
+}
+
+.jobDesc {
+    margin: 5px 0 0;
+    color: var(--text-company-medium);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------- */
+/* MODAL STYLES (per azienda, es. crea nuova offerta) */
+/* ------------------------------------------- */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modalContent {
+    background-color: var(--background-company-card);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-company-light);
+}
+
+.modalHeader h3 {
+    margin: 0;
+    color: var(--text-company-dark);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+}
+
+.modalCloseButton {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    color: var(--text-company-medium);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modalCloseButton:hover {
+    color: var(--danger-company-red);
+    transform: scale(1.1);
+}
+
+.modalBody {
+    margin-bottom: var(--spacing-lg);
+}
+
+.modalBody label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text-company-dark);
+    font-size: var(--font-size-base);
+}
+
+.modalBody input[type="text"],
+.modalBody input[type="email"],
+.modalBody input[type="tel"],
+.modalBody input[type="number"],
+.modalBody textarea,
+.modalBody select,
+.modalBody input[type="date"] { /* Added date type */
+    width: calc(100% - (var(--spacing-md) * 2)); /* Ajusta per il padding */
+    padding: 12px;
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-company-light);
+    border-radius: 8px;
+    font-size: var(--font-size-base);
+    color: var(--text-company-dark);
+    background-color: var(--background-company-light);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-out;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.06);
+    caret-color: var(--primary-company-blue);
+    -webkit-appearance: none; /* Per rimuovere stili di default su Safari/Chrome */
+    -moz-appearance: none;    /* Per rimuovere stili di default su Firefox */
+    appearance: none;         /* Stile standard per rimuovere */
+}
+
+.modalBody input[type="text"]:focus,
+.modalBody input[type="email"]:focus,
+.modalBody input[type="tel"]:focus,
+.modalBody input[type="number"]:focus,
+.modalBody textarea:focus,
+.modalBody select:focus,
+.modalBody input[type="date"]:focus { /* Added date type */
+    border-color: var(--primary-company-blue);
+    box-shadow: 0 0 0 3px rgba(0, 76, 153, 0.25), inset 0 1px 5px rgba(0,0,0,0.1);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.modalBody input[type="text"]:hover,
+.modalBody input[type="email"]:hover,
+.modalBody input[type="tel"]:hover,
+.modalBody input[type="number"]:hover,
+.modalBody textarea:hover,
+.modalBody select:hover,
+.modalBody input[type="date"]:hover { /* Added date type */
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.05);
+    border-color: var(--secondary-company-accent);
+}
+
+.modalBody input[type="text"]::placeholder,
+.modalBody input[type="email"]::placeholder,
+.modalBody input[type="tel"]::placeholder,
+.modalBody input[type="number"]::placeholder,
+.modalBody textarea::placeholder {
+    color: var(--text-company-medium);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.modalBody input[type="text"]:disabled,
+.modalBody input[type="email"]:disabled,
+.modalBody input[type="tel"]:disabled,
+.modalBody input[type="number"]:disabled,
+.modalBody textarea:disabled,
+.modalBody select:disabled,
+.modalBody input[type="date"]:disabled { /* Added date type */
+    background-color: var(--border-company-light);
+    color: var(--text-company-medium);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    transform: none;
+    border: 1px dashed var(--text-company-medium);
+}
+
+.modalBody .input-error-field {
+    border-color: var(--danger-company-red);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25), inset 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.modalBody .input-success-field {
+    border-color: var(--tertiary-company-green);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25), inset 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.modalBody textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.modalBody .checkboxContainer, .modalBody .checkboxGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+}
+
+.modalBody .checkboxContainer input[type="checkbox"], .modalBody .checkboxGroup input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--primary-company-blue);
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.modalBody .checkboxContainer label, .modalBody .checkboxGroup label {
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    color: var(--text-company-dark);
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-company-light);
+}
+
+@media (max-width: 480px) {
+    .modalContent {
+        padding: var(--spacing-lg);
+    }
+    .modalActions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .actionBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* ------------------------------------------- */
+/* MESSAGGISTICA (Errori, Successi, Caricamento) */
+/* ------------------------------------------- */
+.sectionTitle {
+    color: var(--text-company-dark);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-company-light);
+    padding-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.sectionTitle i {
+    color: var(--primary-company-blue);
+    font-size: var(--font-size-xl);
+}
+
+.loadingMessage, .errorMessage, .noDataMessage {
+    display: flex;
+    flex-direction: column; /* Cambiato a colonna per una migliore visualizzazione */
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    justify-content: center;
+}
+
+.loadingMessage {
+    color: var(--primary-company-blue);
+    background-color: #eaf6ff;
+    border: 1px solid #cce0f0;
+}
+
+.errorMessage {
+    color: var(--danger-company-red);
+    background-color: #fdeaea;
+    border: 1px solid #f9dcdc;
+}
+
+.noDataMessage {
+    color: var(--text-company-medium);
+    background-color: #f7f9fa;
+    border: 1px dashed var(--border-company-light);
+    font-style: italic;
+    padding: var(--spacing-xl); /* Aumentato il padding per maggiore impatto */
+}
+
+.loadingSpinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--primary-company-blue);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-sm);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ------------------------------------------- */
+/* COMPANY PROFILE PAGE                        */
+/* ------------------------------------------- */
+.profilePage {
+    background-color: var(--background-company-light); /* Sfondo chiaro per la pagina */
+    padding: var(--spacing-lg);
+    border-radius: 12px; /* Bordo blu scuro */
+    min-height: calc(100vh - var(--spacing-xxl) * 2); /* Adjust for header/footer if present */
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-company-light);
+}
+
+.profilePicLarge {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-company-blue);
+    box-shadow: 0 0 0 3px var(--secondary-company-accent), 0 4px 12px rgba(0,0,0,0.1);
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+
+.profileHeader h3 {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    color: var(--text-company-dark);
+    font-weight: 700;
+}
+
+.profileContact {
+    font-size: var(--font-size-base);
+    color: var(--text-company-medium);
+    margin: 5px 0 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.profileContact i {
+    color: var(--primary-company-blue);
+}
+
+.profileDetails h4 {
+    font-size: var(--font-size-lg);
+    color: var(--text-company-dark);
+    font-weight: 600;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-company-light);
+    padding-bottom: var(--spacing-xs);
+}
+
+.profileDetails p {
+    font-size: var(--font-size-base);
+    color: var(--text-company-dark);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.5;
+}
+
+.profileDetails strong {
+    color: var(--primary-company-blue);
+}
+
+.formGroup {
+    margin-bottom: var(--spacing-md);
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--text-company-dark);
+    font-size: var(--font-size-base);
+}
+
+.formControl {
+    width: calc(100% - var(--spacing-md) * 2); /* Ajusta per il padding */
+    padding: 12px;
+    border: 1px solid var(--border-company-light);
+    border-radius: 8px;
+    font-size: var(--font-size-base);
+    color: var(--text-company-dark);
+    background-color: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formControl:focus {
+    border-color: var(--primary-company-blue);
+    box-shadow: 0 0 0 3px rgba(0, 76, 153, 0.25);
+    outline: none;
+}
+
+.formControl[type="checkbox"] {
+    width: auto;
+    margin-right: var(--spacing-xs);
+    accent-color: var(--primary-company-blue); /* Accent color for checkbox */
+}
+
+.formGroupCheck {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-xs);
+}
+
+.formGroupCheck label {
+    margin-bottom: 0;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.profileActions {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+
+/* SIDEBAR (barra laterale di navigazione) - STILI AGGIUNTI/MODIFICATI PER AZIENDA */
+.sidebar {
+    width: 250px; /* Larghezza desktop più definita */
+    background-color: var(--primary-company-blue);
+    color: white;
+    padding: var(--spacing-md) 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+/* Stato attivo della sidebar (per mobile, quando è aperta) */
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Media query per schermi più piccoli (es. tablet, mobile) */
+@media (max-width: 767px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px; /* Larghezza maggiore su mobile quando attiva */
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .mainContent {
+        margin-left: 0 !important; /* Rimuove il margine su mobile */
+    }
+}
+
+.sidebarOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .sidebar.active + .sidebarOverlay {
+        display: block;
+    }
+}
+
+/* Contenitore del logo nella sidebar */
+.logoContainer {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    display: grid;
+    justify-content: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.564);
+}
+
+/* Stile del logo */
+.logo {
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--secondary-company-accent), 0 2px 8px rgba(255, 255, 255, 0.89);
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+/* Menu di navigazione */
+.navMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* Stile dei link nel menu di navigazione */
+.navMenu li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.navMenu a,
+.navMenu .navItem {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    transition: background-color 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
+    border-radius: 8px;
+    margin: 0 var(--spacing-sm);
+}
+
+/* Stile delle icone nel menu di navigazione */
+.navMenu a i,
+.navMenu .navItem i {
+    margin-right: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    transition: color 0.2s ease;
+}
+
+/* Stile al passaggio del mouse o quando il link è attivo */
+.navMenu a:hover,
+.navMenu .navItem:hover {
+    background-color: var(--secondary-company-accent);
+    padding-left: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navMenu a.active,
+.navMenu .navItem.active {
+    background-color: var(--background-company-card);
+    color: var(--primary-company-blue);
+    padding-left: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+
+.navMenu a.active i,
+.navMenu .navItem.active i {
+    color: var(--primary-company-blue);
+}
+
+/* Stile per il bottone di chiusura della sidebar (mobile) */
+.closeBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    display: none; /* Nascosto di default */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.closeBtn:hover {
+    color: var(--text-company-light);
+    transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+    .closeBtn {
+        display: block; /* Mostra su schermi piccoli */
+    }
+}
+
+/* Stile per il link/bottone di Logout */
+.logoutBtnContainer {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-left: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+}
+
+.logoutBtn {
+    background-color: var(--primary-company-blue);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.logoutBtn:hover {
+    background-color: var(--secondary-company-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.logoutBtn i {
+    font-size: var(--font-size-lg);
+    margin-right: 0;
+}
+
+@media (max-width: 767px) {
+    .logoutBtnContainer {
+        margin-top: var(--spacing-sm);
+        border-top: none;
+        padding-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+    .logoutBtn {
+        width: auto;
+        justify-content: center;
+        padding: 10px 15px;
+        font-size: var(--font-size-sm);
+        margin: auto;
+    }
+}
+
+
+/* Media Queries (adattamenti per responsive design) */
+@media (max-width: 768px) {
+    .header {
+        padding: var(--spacing-sm);
+    }
+    .profileSection {
+        gap: var(--spacing-sm);
+    }
+    .notifications {
+        font-size: 1.2rem;
+    }
+    .profileInfo .userName {
+        font-size: var(--font-size-sm);
+    }
+    .profilePic {
+        width: 40px;
+        height: 40px;
+    }
+    .welcomeCard, .statsContainer, .postedJobs, .profileCard {
+        padding: var(--spacing-md);
+    }
+    .welcomeCard h2 {
+        font-size: var(--font-size-xl);
+    }
+    .statCard h3 {
+        font-size: var(--font-size-base);
+    }
+    .statCard p {
+        font-size: var(--font-size-2xl);
+    }
+    .jobItem {
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
+    }
+    .jobIcon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    .jobTitle {
+        font-size: var(--font-size-base);
+    }
+    .jobDesc {
+        font-size: var(--font-size-sm);
+    }
+    .profileActions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .actionBtn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboardContent {
+        grid-template-columns: 1fr;
+    }
+    .welcomeCard, .statsContainer, .postedJobs, .profileCard {
+        grid-column: 1 / -1; /* Assicurati che occupino sempre tutta la larghezza */
+    }
+    .quickActions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}

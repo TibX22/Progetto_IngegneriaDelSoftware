@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "badges",
+  "info": {
+    "singularName": "badge",
+    "pluralName": "badges",
+    "displayName": "Badge",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "immagine": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "profilo_candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profilo-candidato.profilo-candidato",
+      "inversedBy": "badges"
+    },
+    "requisito_posizione": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::requisito-posizione.requisito-posizione",
+      "inversedBy": "badges"
+    }
+  }
+}
